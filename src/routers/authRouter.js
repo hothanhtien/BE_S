@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import auth from '../Controler/authControler'
+import auth from '../Controller/authControler'
 
 // lc/auth/login
 router.get('/login', auth.login)
