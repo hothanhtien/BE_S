@@ -6,4 +6,4 @@ import auth from '../Controller/authControler'
 router.get('/login', auth.login)
 
 
-module.exports = router;
+export default router;
