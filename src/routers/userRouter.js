@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import user from '../Controler/userControler'
+import user from '../Controller/userControler'
 
 // lc/users
-router.get('/', user.display)
+router.get('/', user.getAllUsers)
 // lc/users/:id
 router.get('/:id', user.detial)
 // lc/users/create
