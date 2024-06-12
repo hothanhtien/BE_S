@@ -8,4 +8,4 @@ const route = (app) => {
     app.use('/users', user)
 }
 
-module.exports = route;
+export default route;

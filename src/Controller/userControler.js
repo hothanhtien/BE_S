@@ -1,19 +1,19 @@
 const fs = require('fs');
-import pool from '../../config/dbConfig';
+import pool from '../config/dbConfig';
+import userService from '../Service/usersService'
 class userControler {
     getAllUsers = async (req, res) => {
         // res.send('hi')
         req.user // biết ai đang đăng nhập 
         try {
-            const [rows] = await pool.query('SELECT * FROM userdetial');
-            res.json(rows);
+            const users = await userService.getUsers();
+            res.json(users);
         } catch (err) {
             console.error(err);
             res.status(500).send('Server Error');
         }
     };
     // display(req, res, next) {
-        
     //     fs.readFile('data.json', 'utf8', (err, data) => {
     //         if (err) {
     //             res.send('lỗi đọc file')
@@ -30,7 +30,7 @@ class userControler {
             }
             res.json(usersDetial[0]);
         } catch (err) {
-            console.error(err);
+            console.error(err); 
             res.status(500).send('Server Error');
         }
         // console.log('2. Get từng user cụ thể khi truyền params')
@@ -150,4 +150,4 @@ class userControler {
     }
 }
 
-module.exports = new userControler();
+export default new userControler();
