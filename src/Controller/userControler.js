@@ -32,7 +32,7 @@ class userControler {
         } catch (err) {
             console.error(err); 
             res.status(500).send('Server Error');
-        }
+        } 
         // console.log('2. Get từng user cụ thể khi truyền params')
         // console.log('ID muốn lấy ra thông qua params nè' ,req.params.id)
         // fs.readFile('data.json', 'utf8', (err, data) => {
