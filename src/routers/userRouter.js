@@ -12,4 +12,6 @@ router.post('/create', user.create)
 router.put('/update/:id', user.update)
 // lc/users/delete
 router.delete('/delete/:id', user.delete)
+
+
 export default router;
