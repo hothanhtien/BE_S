@@ -5,7 +5,7 @@ const route = (app) => {
 
     app.use('/auth', auth)
 
-    app.use('/users', user)
+    app.use('/users', user) 
 }
 
 export default route;

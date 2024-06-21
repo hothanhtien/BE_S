@@ -1,6 +1,6 @@
 const fs = require('fs');
 import pool from '../config/dbConfig';
-import userService from '../Service/usersService'
+import userService from '../models/usersService'
 class userControler {
     getAllUsers = async (req, res) => {
         // res.send('hi')
@@ -15,7 +15,8 @@ class userControler {
     };
     detial = async (req, res, next) => {
         try {
-            const [usersDetial] = await pool.query('SELECT * FROM userdetial WHERE id = ?', req.params.id);
+            // const [usersDetial] = await pool.query('SELECT * FROM userdetial WHERE id = ?', req.params.id);
+            const usersDetial = await userService.getDetial(req.params.id);
             if (usersDetial.length === 0) {
                 return res.status(404).send('User not found');
             }
@@ -27,8 +28,9 @@ class userControler {
     }
     create = async(req, res, next) => {
         try {
-            const {name, age} = req.body;
-             await pool.query('INSERT INTO userdetial (name, age) VALUES (?,?)',[name, age]);
+            const {name, age, email, password, gender} = req.body;
+            //  await pool.query('INSERT INTO userdetial (name, age) VALUES (?,?)',[name, age]);
+            await userService.createUser(name, age, email, password, gender);
             // res.json(usersInsert);
             res.status(201).send('User created');
         }
@@ -39,8 +41,9 @@ class userControler {
     }
     update = async(req, res, next) => {
         try {
-            const {name, age} = req.body;
-            await pool.query('UPDATE userdetial SET name =?, age=? WHERE id=?',[name, age, req.params.id]);
+            const {name, age, email, password, gender} = req.body;
+            // await pool.query('UPDATE userdetial SET name =?, age=? WHERE id=?',[name, age, req.params.id]);
+            await userService.updateUser(name, age, email, password, gender, req.params.id);
             // res.json(usersInsert);
             res.status(201).send('User update');
         }
@@ -51,7 +54,8 @@ class userControler {
     }
     delete= async(req, res, next) =>{
         try {
-            await pool.query('DELETE FROM userdetial WHERE id = ?', [req.params.id]);
+            // await pool.query('DELETE FROM userdetial WHERE id = ?', [req.params.id]);
+            await userService.deleteUser(req.params.id);
             res.status(201).send('User update');
         }
         catch(err) {
