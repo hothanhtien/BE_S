@@ -1,4 +1,4 @@
-import pool from '../config/dbConfig';
+import pool from '../database/database.config';
 
 class userService {
     async getUsers() {
