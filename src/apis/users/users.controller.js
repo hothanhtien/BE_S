@@ -1,6 +1,5 @@
 const fs = require('fs');
-import pool from '../config/dbConfig';
-import userService from '../models/usersService'
+import userService from '../../models/usersModel'
 class userControler {
     getAllUsers = async (req, res) => {
         // res.send('hi')
