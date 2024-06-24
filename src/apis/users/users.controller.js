@@ -1,8 +1,7 @@
 const fs = require('fs');
-import userService from '../../models/usersModel'
+import userService from './user.service'
 class userControler {
     getAllUsers = async (req, res) => {
-        // res.send('hi')
         req.user // biết ai đang đăng nhập 
         try {
             const users = await userService.getUsers();
